@@ -1,5 +1,5 @@
 # Death rates vs Economy during the pandemic
-Analyzing multiple datasets to examine the economical effect of the pandemic on different countries and death rates.
+Analyzing multiple datasets to examine the effect of the pandemic on different countries' death rates and economy.
 
 The aim of this research is to determine a set of countries which could manage to:
 
