@@ -10,7 +10,11 @@ and compare between them in terms of different aspects(length of lockdown period
 A detailed report with charts is attached.
 
 This projected was implemented by:
+
 Mohamed Elsisi (mohamedsamy95)
+
 Gehad Gamal (gehadg)
+
 Ashraf Beshtawi ()
+
 Imam Ihsan ()
