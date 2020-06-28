@@ -1,0 +1,24 @@
+Austria ATX (ATX)
+Belarus Not Found
+Canada S&P/TSX Composite (GSPTSE)
+China Shanghai Composite (SSEC)
+Czech PX (PX)
+Denmark OMX Copenhagen 20 (OMXC20)
+Ecuador Guayaquil Select (BVG)
+France CAC 40 (FCHI)
+Germany DAX (GDAXI)
+Ireland ISEQ Overall (ISEQ)
+Israel TA 35 (TA35)
+Italy FTSE MIB (FTMIB)
+Japan Nikkei 225 (N225)
+Netherlands AEX (AEX)
+Panama Not Found
+Portugal PSI 20 (PSI20)
+Romania BET (BETI)
+Serbia Belex 15 (BELEX15)
+Singapore Not Found
+South Korea KOSPI (KS11)
+Spain KOSPI (KS11)
+Sweden OMX Stockholm 30 (OMXS30)
+United Kingdom FTSE 100
+US Dow Jones Industrial Average (DJI)
