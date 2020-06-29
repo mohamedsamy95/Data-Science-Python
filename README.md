@@ -13,7 +13,7 @@ and compare between them in terms of different aspects(length of lockdown period
 
 A detailed report with charts is attached.
 
-This projected was implemented by:
+This project was implemented by:
 
 Mohamed Elsisi (mohamedsamy95)
 
