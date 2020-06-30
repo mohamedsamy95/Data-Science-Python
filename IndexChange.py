@@ -21,7 +21,7 @@ df = pd.DataFrame(columns = ['Country', 'Start Price', 'End Price', 'Change %','
 for (country,i) in zip( countries,range(len(countries)) ):
     stock_data = pd.read_csv('Stock market data/' + country + ' Historical Data.csv' ,
                        dtype = {'Price' : 'str'})
-    population_data = pd.read_csv('Population_by_country_2020.csv', 
+    population_data = pd.read_csv('Corona datasets/Population_by_country_2020.csv', 
                                   dtype = {'Population (2020)' : 'float'})
     population_data = population_data.set_index('Country (or dependency)')
     death_data = pd.read_csv('Corona datasets/time_series_covid19_deaths_global.csv')
