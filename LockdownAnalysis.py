@@ -125,12 +125,17 @@ hy_df["days_between_lockdown_first_exp_growth"]=hy_df["days_between_lockdown_fir
 
 print(hy_df)
 
-axes = hy_df.plot(kind='bar')
+
+## plt the relationship between the time needed to flatten the curve and the time the goverment waited to start the lock down
+df_cpy=hy_df.drop(["Lockdown Length"],axis=1)
+axes = df_cpy.plot(kind='bar')
 plt.show()
 
 ###correlations
 x=hy_df["days_between_lockdown_first_exp_growth"].corr(hy_df["Lockdown Length"])
-print(x)
+
+print("Correlation between wait-time and time needed to flatten the curve:"+str(x))
+print("wait-time: (time between the start of exp-growth and start of lockdown)")
 
 
 ###read economical changes in the lockdown
