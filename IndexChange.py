@@ -8,6 +8,7 @@ Created on Tue Jun 30 16:37:47 2020
 import pandas as pd
 import numpy as np
 import datetime as dt
+import Library as l
 
 countries = ['Austria', 'Canada', 'China', 'Czech Republic', 'Denmark', 'Ecuador', 'France', 
              'Germany', 'Ireland', 'Israel', 'Italy', 'Netherlands', 'Portugal',
@@ -18,21 +19,19 @@ df = pd.DataFrame(columns = ['Country', 'Start Price', 'End Price', 'Change %','
                              'Factor'])
 
 
-for (country,i) in zip( countries,range(len(countries)) ):
-    stock_data = pd.read_csv('Stock market data/' + country + ' Historical Data.csv' ,
-                       dtype = {'Price' : 'str'})
+for country in countries:
+    stock_data = l.exp_market_dataset(country, date_format = '%#m/%#d/%Y')
     population_data = pd.read_csv('Corona datasets/Population_by_country_2020.csv', 
                                   dtype = {'Population (2020)' : 'float'})
     population_data = population_data.set_index('Country (or dependency)')
     death_data = pd.read_csv('Corona datasets/time_series_covid19_deaths_global.csv')
     death_data = death_data.set_index('Country/Region')
     
-    start_price = stock_data.iloc[-1]['Price'].replace(',' , '')
-    end_price = stock_data.iloc[0]['Price'].replace(',' , '')      
+    start_price = stock_data.iloc[-1]['Price']
+    end_price = stock_data.iloc[0]['Price']
     change_percent = ((float(end_price) - float(start_price)) / float(start_price)) * 100
     
-    death_cases = death_data.loc[country][dt.datetime.strptime(stock_data.iloc[0]['Date'], 
-                                                               '%b %d, %Y').strftime('%#m/%#d/%Y')]
+    death_cases = death_data.loc[country][stock_data.iloc[0]['Date'] ]
     if (not isinstance(death_cases, int)):
         death_cases = death_cases.sum()
         
@@ -49,6 +48,13 @@ for (country,i) in zip( countries,range(len(countries)) ):
     df = df.append(row , ignore_index = True)
     
 print(df)
+
+c = ['Germany', 'Austria']
+print(df[df['Country'] == 'Germany'])
+d1 = df['Country']
+d2 = df['Start Price']
+d = pd.concat([d1,d2] , axis =1)
+print(d)
 
 df.to_csv('death_stock_rates.csv')
 
