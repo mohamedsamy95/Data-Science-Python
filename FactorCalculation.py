@@ -55,6 +55,9 @@ l.plot_and_save(yaxis = 'Ratio', death_rates = death_rates, countries = countrie
 l.plot_and_save(xaxis = 'Death', yaxis = 'Market value', 
                 death_rates = death_rates, countries = countries)
 
+summary = pd.read_csv('death_stock_rates')
+
+
 
 
     

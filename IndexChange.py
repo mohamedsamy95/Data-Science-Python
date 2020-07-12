@@ -9,6 +9,9 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 import Library as l
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 countries = ['Austria', 'Canada', 'China', 'Czech Republic', 'Denmark', 'Ecuador', 'France', 
              'Germany', 'Ireland', 'Israel', 'Italy', 'Netherlands', 'Portugal',
@@ -27,11 +30,11 @@ for country in countries:
     death_data = pd.read_csv('Corona datasets/time_series_covid19_deaths_global.csv')
     death_data = death_data.set_index('Country/Region')
     
-    start_price = stock_data.iloc[-1]['Price']
-    end_price = stock_data.iloc[0]['Price']
+    start_price = stock_data.iloc[0]['Price']
+    end_price = stock_data.iloc[-1]['Price']
     change_percent = ((float(end_price) - float(start_price)) / float(start_price)) * 100
     
-    death_cases = death_data.loc[country][stock_data.iloc[0]['Date'] ]
+    death_cases = death_data.loc[country][stock_data.iloc[-1]['Date'] ]
     if (not isinstance(death_cases, int)):
         death_cases = death_cases.sum()
         
@@ -46,15 +49,32 @@ for country in countries:
            'Death %' : death_percent , 
            'Factor' : round(change_percent / death_percent) }
     df = df.append(row , ignore_index = True)
+
+#df.to_csv('Factor results/death_stock_rates.csv')
+
+#Initialize canvas
+sns.set_context('notebook')
+sns.set_style('darkgrid')
+sns.set(font_scale=1.5)
     
-print(df)
+#Create figure object
+fig, ax = plt.subplots(figsize = (40,15))
+rect = ax.bar(list(df['Country']), list(df['Factor']), 
+              color = ['red', 'blue', 'black', 'yellow', 'cyan', 'green', 'orange'] )
 
-c = ['Germany', 'Austria']
-print(df[df['Country'] == 'Germany'])
-d1 = df['Country']
-d2 = df['Start Price']
-d = pd.concat([d1,d2] , axis =1)
-print(d)
+def autolabel(rects):
+    """
+    Attach a text label above each bar displaying its height
+    """
+    for rect in rects:
+        height = rect.get_height()
+        if height > 0:
+            v = 'bottom'
+        else:
+            v = 'top'
+        ax.text(rect.get_x() + rect.get_width()/2., 1.03*height,'%d' % int(height),
+                ha='center', va=v)
 
-df.to_csv('death_stock_rates.csv')
-
+autolabel(rect)        
+plt.xticks(rotation = 90)
+plt.savefig('Factor results/Summary')
