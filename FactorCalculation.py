@@ -6,8 +6,6 @@ Created on Sat Jul 11 22:15:26 2020
 """
 
 import pandas as pd
-import numpy as np
-import datetime as dt
 import Library as l
 
 #Sample of countries we are dealing with
@@ -48,36 +46,20 @@ for country in countries:
   
 death_rates.to_csv('Corona datasets/death_rates.csv')
 
-#Load stock market data for each country
-for country in countries:
-    stock_data = l.exp_market_dataset(country, date_format = '%#m/%#d/%Y')
-    
-    #Change shape of dataframe to match death_rates
-    stock_data = stock_data.T
-    stock_data.columns = stock_data.loc['Date']
-    stock_data = stock_data.drop(['Date'], axis =0)
-    stock_data = stock_data.drop(['Price', 'Open', 'High', 'Low', 'Vol.'], axis=0)
-    
-    #Create new dataframe that holds both death rates and percent price change for a country
-    death_stock_rates = pd.DataFrame(columns = stock_data.columns)
-    death_stock_rates = death_stock_rates.rename(columns={'Date' : 'Rates'})
-    death_stock_rates['Rates'] = pd.Series(['Market value', 'Death', 'Ratio'])
-    death_stock_rates = death_stock_rates.set_index('Rates')
+#Plots with different variables, save factor datasets only once
+l.plot_and_save(yaxis = 'Market value', death_rates = death_rates, countries = countries,
+                #save_datasets = True)
+l.plot_and_save(yaxis = 'Death', death_rates = death_rates, countries = countries)
+l.plot_and_save(yaxis = 'Ratio', death_rates = death_rates, countries = countries)
 
-    #create a list of dataframe columns
-    columns = list(death_stock_rates)
+l.plot_and_save(xaxis = 'Death', yaxis = 'Market value', 
+                death_rates = death_rates, countries = countries)
 
-    #iterating through all dates
-    for i in columns:
-        #Add values to cells
-        change = float(stock_data.loc['Change %'][i].replace('%' , ''))
-        death_stock_rates.loc['Market value',i] = change
-        death = death_rates.loc[country][i]
-        death_stock_rates.loc['Death',i] = death
-        if death !=0 :
-            death_stock_rates.loc['Ratio',i] = round(change/death , 2)
+summary = pd.read_csv('death_stock_rates')
+
+
+
+
     
-    #Save table into csv file
-    death_stock_rates.to_csv('Factor results/' + country + ' factor.csv')
             
     
