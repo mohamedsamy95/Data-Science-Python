@@ -2,14 +2,15 @@ import pandas as pd
 import numpy as np
 import json
 from datetime import datetime
+import matplotlib.pyplot as plt
 # Here we determine exactly when did the exponential growth in each
 # Country started , along with when did it flatten the curve if they did
 
 data = pd.read_csv(r"Corona datasets/covid-19-total-cases-per-day.csv",
                    sep=";", header=0, index_col=0)
 pd.set_option('display.max_rows', data.shape[0]+1)
-print()
 allCountries = []
+filteredCountries =[]
 for country in data.index:
     countryInfo = {}
     countryInfo["name"] = country
@@ -22,6 +23,22 @@ for country in data.index:
     startFlat = ""
     totalCases = ""
     countryData = data.loc[country]
+    xAxis = data.loc[country].index
+    yAxis = data.loc[country]
+
+
+    # Plot
+    try:
+        plt.rc('xtick', labelsize=7)
+        plt.plot(xAxis, yAxis)
+        plt.title('Logarithmic Graph for Total Death per day ({})'.format(country))
+        plt.xlabel('Dates')
+        plt.ylabel('Logarithmic value of Total cases')
+        plt.xticks(rotation=90)
+        plt.savefig(r"Log-Graphs/{}.png".format(country))
+        plt.clf()
+    except:
+       pass
     # Calculation for the Day that the exponential growth started in
     while i < (countryData.size - 5):
         compPoint = countryData[i]
@@ -76,13 +93,25 @@ for country in data.index:
         b = datetime.strptime(startFlat, date_format)
         delta = b - a
         countryInfo["Total Duration in Days"] = delta.days
+        allCountries.append(countryInfo)
         if countryInfo["Total Cases"] >=10000:
-            allCountries.append(countryInfo)
+            filteredCountries.append(countryInfo)
             print("Country : {} , First : {} , startFlat : {}".format(
                 country, firstExpon, startFlat))
-pd.DataFrame(allCountries).to_csv(
+    else:
+        countryInfo["name"] = country
+        countryInfo["firstExponential"] = firstExpon
+        countryInfo["StartedFlattening"] = startFlat
+        countryInfo["Total Cases"] = np.ceil(
+        np.exp(countryData[countryData.size-1]))
+        allCountries.append(countryInfo)
+pd.DataFrame(filteredCountries).to_csv(
     "Extracted Dates.csv", sep=',', encoding='utf-8', index=False)
 with open("Extracted Dates.json", "w") as data_file:
-    json.dump(allCountries, data_file, indent=4, sort_keys=True)
+    json.dump(filteredCountries, data_file, indent=4, sort_keys=True)
+
+
+
+
 
 
