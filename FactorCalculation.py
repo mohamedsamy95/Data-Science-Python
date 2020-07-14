@@ -48,16 +48,17 @@ death_rates.to_csv('Corona datasets/death_rates.csv')
 
 #Plots with different variables, save factor datasets only once
 l.plot_and_save(yaxis = 'Market value', death_rates = death_rates, countries = countries,
-                #save_datasets = True)
+                save_datasets = True)
 l.plot_and_save(yaxis = 'Death', death_rates = death_rates, countries = countries)
 l.plot_and_save(yaxis = 'Ratio', death_rates = death_rates, countries = countries)
 
 l.plot_and_save(xaxis = 'Death', yaxis = 'Market value', 
                 death_rates = death_rates, countries = countries)
 
-summary = pd.read_csv('death_stock_rates')
+summary_df  = l.get_statistical_data(death_rates = death_rates , countries = countries, save_dataset = True)
 
-
+print('Max mean factor:\n' , summary_df[summary_df['mean(Ratio)'] == summary_df['mean(Ratio)'].max()])
+print('Min std factor:\n' , summary_df[summary_df['std(Ratio)'] == summary_df['std(Ratio)'].min()])
 
 
     

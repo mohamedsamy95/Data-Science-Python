@@ -62,13 +62,16 @@ def plot_and_save(death_rates: pd.DataFrame , countries,
             death_stock_rates.loc['Death',i] = death
             if death !=0 :
                 death_stock_rates.loc['Ratio',i] = round(change/death , 2)
-                
+            
+        #Transpose
+        death_stock_rates = death_stock_rates.T
+        
         #Save table into csv file
         if(save_datasets):
             death_stock_rates.to_csv('Factor results/' + country + ' factor.csv')
             
         #Reset index and convert data type to float for plotting and regression calculations
-        death_stock_rates = death_stock_rates.T.reset_index()
+        death_stock_rates = death_stock_rates.reset_index()
         death_stock_rates['Market value'] = death_stock_rates['Market value'].astype(float)
         death_stock_rates['Death'] = death_stock_rates['Death'].astype(float)
         death_stock_rates['Ratio'] = death_stock_rates['Ratio'].astype(float)
@@ -99,4 +102,30 @@ def plot_and_save(death_rates: pd.DataFrame , countries,
         #Save figure
         plt.savefig('Factor results/' + yaxis + ' vs ' + xaxis)
         plot += 1
+        
+def get_statistical_data(death_rates: pd.DataFrame , countries, save_dataset = False):
+    df = pd.DataFrame()
+    for country in countries:
+        country_data = pd.read_csv('Factor results/' + country + ' factor.csv')
+        country_data = country_data.rename(columns = {'Date' : 'Country'})
+        country_data['Country'] = pd.Series([country for i in range(country_data.shape[0])])
+        df = df.append(country_data)
+    df = df.groupby(['Country'])
+    mean_df = df.mean().round(3)
+    variance_df = df.var().round(3)
+    std_df = df.std().round(3)
+    
+    mean_df = mean_df.rename(columns = {'Market value' : 'mean(Market value)', 
+                                        'Death' : 'mean(Death)', 'Ratio' : 'mean(Ratio)'})
+    variance_df = variance_df.rename(columns = {'Market value' : 'variance(Market value)', 
+                                        'Death' : 'variance(Death)', 'Ratio' : 'variance(Ratio)'})
+    std_df = std_df.rename(columns = {'Market value' : 'std(Market value)', 
+                                        'Death' : 'std(Death)', 'Ratio' : 'std(Ratio)'})
+    summary_df = pd.concat([mean_df, std_df, variance_df] , axis =1)
+    #Save datasets
+    if(save_dataset):
+        summary_df.to_csv('Factor results/StatisticalSummary.csv')
+
+    return summary_df
+    
     
