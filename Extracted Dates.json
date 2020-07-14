@@ -1,0 +1,163 @@
+[
+    {
+        "StartedFlattening": "3/28/2020",
+        "Total Cases": 17109.0,
+        "Total Duration in Days": 32,
+        "firstExponential": "2/25/2020",
+        "name": "Austria"
+    },
+    {
+        "StartedFlattening": "05/09/2020",
+        "Total Cases": 53973.0,
+        "Total Duration in Days": 61,
+        "firstExponential": "03/09/2020",
+        "name": "Belarus"
+    },
+    {
+        "StartedFlattening": "05/03/2020",
+        "Total Cases": 100404.0,
+        "Total Duration in Days": 52,
+        "firstExponential": "03/12/2020",
+        "name": "Canada"
+    },
+    {
+        "StartedFlattening": "2/13/2020",
+        "Total Cases": 84335.0,
+        "Total Duration in Days": 20,
+        "firstExponential": "1/24/2020",
+        "name": "China"
+    },
+    {
+        "StartedFlattening": "05/10/2020",
+        "Total Cases": 10025.0,
+        "Total Duration in Days": 64,
+        "firstExponential": "03/07/2020",
+        "name": "Czechia"
+    },
+    {
+        "StartedFlattening": "4/24/2020",
+        "Total Cases": 12194.0,
+        "Total Duration in Days": 53,
+        "firstExponential": "03/02/2020",
+        "name": "Denmark"
+    },
+    {
+        "StartedFlattening": "4/24/2020",
+        "Total Cases": 46752.0,
+        "Total Duration in Days": 42,
+        "firstExponential": "3/13/2020",
+        "name": "Ecuador"
+    },
+    {
+        "StartedFlattening": "4/27/2020",
+        "Total Cases": 189602.0,
+        "Total Duration in Days": 63,
+        "firstExponential": "2/24/2020",
+        "name": "France"
+    },
+    {
+        "StartedFlattening": "4/30/2020",
+        "Total Cases": 187519.0,
+        "Total Duration in Days": 65,
+        "firstExponential": "2/25/2020",
+        "name": "Germany"
+    },
+    {
+        "StartedFlattening": "05/06/2020",
+        "Total Cases": 25304.0,
+        "Total Duration in Days": 65,
+        "firstExponential": "03/02/2020",
+        "name": "Ireland"
+    },
+    {
+        "StartedFlattening": "04/05/2020",
+        "Total Cases": 19056.0,
+        "Total Duration in Days": 39,
+        "firstExponential": "2/26/2020",
+        "name": "Israel"
+    },
+    {
+        "StartedFlattening": "4/15/2020",
+        "Total Cases": 236989.0,
+        "Total Duration in Days": 57,
+        "firstExponential": "2/18/2020",
+        "name": "Italy"
+    },
+    {
+        "StartedFlattening": "04/10/2020",
+        "Total Cases": 48784.0,
+        "Total Duration in Days": 43,
+        "firstExponential": "2/27/2020",
+        "name": "Netherlands"
+    },
+    {
+        "StartedFlattening": "05/09/2020",
+        "Total Cases": 21418.0,
+        "Total Duration in Days": 60,
+        "firstExponential": "03/10/2020",
+        "name": "Panama"
+    },
+    {
+        "StartedFlattening": "4/23/2020",
+        "Total Cases": 36690.0,
+        "Total Duration in Days": 52,
+        "firstExponential": "03/02/2020",
+        "name": "Portugal"
+    },
+    {
+        "StartedFlattening": "4/18/2020",
+        "Total Cases": 21999.0,
+        "Total Duration in Days": 40,
+        "firstExponential": "03/09/2020",
+        "name": "Romania"
+    },
+    {
+        "StartedFlattening": "4/27/2020",
+        "Total Cases": 12311.0,
+        "Total Duration in Days": 51,
+        "firstExponential": "03/07/2020",
+        "name": "Serbia"
+    },
+    {
+        "StartedFlattening": "3/15/2020",
+        "Total Cases": 12122.0,
+        "Total Duration in Days": 27,
+        "firstExponential": "2/17/2020",
+        "name": "South Korea"
+    },
+    {
+        "StartedFlattening": "04/11/2020",
+        "Total Cases": 243929.0,
+        "Total Duration in Days": 49,
+        "firstExponential": "2/22/2020",
+        "name": "Spain"
+    },
+    {
+        "StartedFlattening": "05/02/2020",
+        "Total Cases": 51615.0,
+        "Total Duration in Days": 67,
+        "firstExponential": "2/25/2020",
+        "name": "Sweden"
+    },
+    {
+        "StartedFlattening": "04/07/2020",
+        "Total Cases": 31118.0,
+        "Total Duration in Days": 41,
+        "firstExponential": "2/26/2020",
+        "name": "Switzerland"
+    },
+    {
+        "StartedFlattening": "4/29/2020",
+        "Total Cases": 295889.0,
+        "Total Duration in Days": 83,
+        "firstExponential": "02/06/2020",
+        "name": "United Kingdom"
+    },
+    {
+        "StartedFlattening": "05/05/2020",
+        "Total Cases": 2094058.0,
+        "Total Duration in Days": 67,
+        "firstExponential": "2/28/2020",
+        "name": "US"
+    }
+]

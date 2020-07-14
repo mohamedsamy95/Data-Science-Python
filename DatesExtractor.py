@@ -1,19 +1,21 @@
 import pandas as pd
 import numpy as np
 import json
+from datetime import datetime
 # Here we determine exactly when did the exponential growth in each
 # Country started , along with when did it flatten the curve if they did
 
-data = pd.read_csv("dataset-covid.csv", sep=";", header=0, index_col=0)
+data = pd.read_csv(r"Corona datasets/covid-19-total-cases-per-day.csv",
+                   sep=";", header=0, index_col=0)
 pd.set_option('display.max_rows', data.shape[0]+1)
 print()
 allCountries = []
 for country in data.index:
     countryInfo = {}
     countryInfo["name"] = country
-    #We get the log value of the total cases per day in this data series
-    #We chose the log value because it helps to determine where the graph went exponential ( when the log values are incrementing by a value greater than one)
-    #As well as to determine where the graph flattened , where the log value floored ( floor(1.3) = 1 )will be always the same , hence determining that the curve is flattenned
+    # We get the log value of the total cases per day in this data series
+    # We chose the log value because it helps to determine where the graph went exponential ( when the log values are incrementing by a value greater than one)
+    # As well as to determine where the graph flattened , where the log value floored ( floor(1.3) = 1 )will be always the same , hence determining that the curve is flattenned
     data.loc[country] = data.loc[country].apply(np.log)
     i = 0
     firstExpon = ""
@@ -34,6 +36,9 @@ for country in data.index:
                 j = j+1
             if(logIncrement > 1 and firstExpon == ""):
                 firstExpon = data.columns[i]
+                if firstExpon.endswith('/20'):
+                    firstExpon = firstExpon.replace("/20","/2020")
+                    firstExpon = firstExpon.replace("/2020/","/20/")
         i = i+1
 
     i = 0
@@ -52,19 +57,32 @@ for country in data.index:
                 j = j+1
             if isStartOfFlatCurve and countryData.size - i > 30:
                 startFlat = data.columns[i]
+                if startFlat.endswith('/20'):
+                    startFlat = startFlat.replace("/20","/2020")
+                    startFlat = startFlat.replace("/2020/","/20/")
                 break
             if isStartOfFlatCurve and not countryData.size - i > 30:
                 startFlat = "Not Flattened"
 
         i = i+1
-    countryInfo["name"] = country
-    countryInfo["firstExponential"] = firstExpon
-    countryInfo["StartedFlattening"] = startFlat
-    countryInfo["Total Cases"] = countryData[countryData.size-1]
-    allCountries.append(countryInfo)
-
-    print("Country : {} , First : {} , startFlat : {}".format(
-        country, firstExpon, startFlat))
-
-with open("output.json", "w") as data_file:
+    if(("/") in firstExpon and ("/") in startFlat):
+        countryInfo["name"] = country
+        countryInfo["firstExponential"] = firstExpon
+        countryInfo["StartedFlattening"] = startFlat
+        countryInfo["Total Cases"] = np.ceil(
+            np.exp(countryData[countryData.size-1]))
+        date_format = "%m/%d/%Y"
+        a = datetime.strptime(firstExpon, date_format)
+        b = datetime.strptime(startFlat, date_format)
+        delta = b - a
+        countryInfo["Total Duration in Days"] = delta.days
+        if countryInfo["Total Cases"] >=10000:
+            allCountries.append(countryInfo)
+            print("Country : {} , First : {} , startFlat : {}".format(
+                country, firstExpon, startFlat))
+pd.DataFrame(allCountries).to_csv(
+    "Extracted Dates.csv", sep=',', encoding='utf-8', index=False)
+with open("Extracted Dates.json", "w") as data_file:
     json.dump(allCountries, data_file, indent=4, sort_keys=True)
+
+
