@@ -6,8 +6,6 @@ Created on Tue Jun 30 16:37:47 2020
 """
 
 import pandas as pd
-import numpy as np
-import datetime as dt
 import Library as l
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -77,4 +75,7 @@ def autolabel(rects):
 
 autolabel(rect)        
 plt.xticks(rotation = 90)
-plt.savefig('Factor results/Summary')
+plt.xlabel('Country')
+plt.ylabel('Factor (Change in stock market index in %/Death rate in %)')
+plt.title('Calculated factors at last day of exp growth period')
+plt.savefig('Factor results/Factors_last_day')
