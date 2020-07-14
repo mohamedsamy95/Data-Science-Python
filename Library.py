@@ -8,6 +8,7 @@ import pandas as pd
 import datetime as dt
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 def exp_market_dataset(country, price_type = 'str' , date_format = '%m-%d-%Y'):
     dataset = pd.read_csv('Stock market data/' + country + ' Historical Data.csv' ,
@@ -76,9 +77,9 @@ def plot_and_save(death_rates: pd.DataFrame , countries,
         death_stock_rates['Death'] = death_stock_rates['Death'].astype(float)
         death_stock_rates['Ratio'] = death_stock_rates['Ratio'].astype(float)
         
-        #Initialize a 3x7 figure 
-        plt.subplot(3,7,plot)
-        
+        #Initialize a 3x7 figure
+        plt.subplot(3,7,plot)        
+
         #Day 1,2,3,.. instead of dates
         if xaxis == 'Day':
             days = list(range(1, death_stock_rates.shape[0]+1))
@@ -102,7 +103,7 @@ def plot_and_save(death_rates: pd.DataFrame , countries,
         #Save figure
         plt.savefig('Factor results/' + yaxis + ' vs ' + xaxis)
         plot += 1
-        
+     
 def get_statistical_data(death_rates: pd.DataFrame , countries, save_dataset = False):
     df = pd.DataFrame()
     for country in countries:
@@ -111,9 +112,9 @@ def get_statistical_data(death_rates: pd.DataFrame , countries, save_dataset = F
         country_data['Country'] = pd.Series([country for i in range(country_data.shape[0])])
         df = df.append(country_data)
     df = df.groupby(['Country'])
-    mean_df = df.mean().round(3)
-    variance_df = df.var().round(3)
-    std_df = df.std().round(3)
+    mean_df = df.mean().round(5)
+    variance_df = df.var()
+    std_df = df.std().round(5)
     
     mean_df = mean_df.rename(columns = {'Market value' : 'mean(Market value)', 
                                         'Death' : 'mean(Death)', 'Ratio' : 'mean(Ratio)'})

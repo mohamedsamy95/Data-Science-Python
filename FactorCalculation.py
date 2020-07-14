@@ -55,12 +55,23 @@ l.plot_and_save(yaxis = 'Ratio', death_rates = death_rates, countries = countrie
 l.plot_and_save(xaxis = 'Death', yaxis = 'Market value', 
                 death_rates = death_rates, countries = countries)
 
+
+
+
 summary_df  = l.get_statistical_data(death_rates = death_rates , countries = countries, save_dataset = True)
 
-print('Max mean factor:\n' , summary_df[summary_df['mean(Ratio)'] == summary_df['mean(Ratio)'].max()])
-print('Min std factor:\n' , summary_df[summary_df['std(Ratio)'] == summary_df['std(Ratio)'].min()])
+print('Max mean factor:\n' , summary_df.nlargest(5, 'mean(Ratio)'))
+print('Min std factor:\n' , summary_df.nsmallest(5, 'std(Ratio)'))
+#print('Min std factor:\n' , summary_df.nsmallest(5, 'variance(Ratio)'))
+
+print('Max mean Market value:\n' , summary_df.nlargest(5, 'mean(Market value)'))
+print('Min std Market value:\n' , summary_df.nsmallest(5, 'std(Market value)'))
+#print('Min std Market value:\n' , summary_df.nsmallest(5, 'variance(Market value)')
+
+print('Min mean Death rate:\n' , summary_df.nsmallest(5, 'mean(Death)'))
+print('Min std Death rate:\n' , summary_df.nsmallest(5, 'std(Death)'))
+#print('Min std Death rate:\n' , summary_df.nsmallest(5, 'variance(Death)'))
 
 
-    
             
     
