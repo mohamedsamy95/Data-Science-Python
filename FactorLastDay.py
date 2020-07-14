@@ -76,6 +76,6 @@ def autolabel(rects):
 autolabel(rect)        
 plt.xticks(rotation = 90)
 plt.xlabel('Country')
-plt.ylabel('Factor (Death rate in %/Change in stock market index in %)')
+plt.ylabel('Factor (Change in stock market index in %/Death rate in %)')
 plt.title('Calculated factors at last day of exp growth period')
 plt.savefig('Factor results/Factors_last_day')
