@@ -21,11 +21,9 @@ to run the code you should set value of the variable "path" to  the local path o
 
 ################################
 This project was implemented by:
+
 Mohamed Elsisi (mohamedsamy95)
-
 Gehad Gamal (gehadg)
-
 Ashraf Beshtawi (ashrafbeshtawi)
-
 Imam Ihsan (imamihsaan)
 
