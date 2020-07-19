@@ -5,6 +5,13 @@ import seaborn as sb
 from matplotlib import pyplot as plt
 import numpy as np
 import math
+
+##path of the project folder##
+## change here ##
+path="C:/Users/user/Desktop/Data-Science-Python"
+##################################################
+##################################################
+##################################################
 ##Hilfsfunktionen
 def indexof(list,item):
     try:
@@ -42,8 +49,7 @@ def plot_lockdown_flatten(hyprid_df):
 
 
 
-#path of the project folder
-path="C:/Users/user/Desktop/Data-Science-Python"
+
 ##code...
 #change the working directory
 os.chdir(path)
