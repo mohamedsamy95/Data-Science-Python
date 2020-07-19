@@ -100,15 +100,10 @@ for land in  hy_df.iterrows():
 axes = hy_df.plot(kind='bar')
 plt.show()
 
-##calculate a factor
-## we calculate average of (number of infections and length of lockdown for each country)
-## the smaller the average the better the result of this country is
-
-##calculate the factor
-#hy_df['lockdown_flatten_factor'] = hy_df.apply (lambda row:(row["Lockdown Length"]+row["Days to flatten the curve"])/2 , axis=1)
 
 
-## calculate the diffrence between the start of lockdown and the start of exp-growth
+
+## calculate the diffrence (in days) between the start of lockdown and the start of exp-growth (negative number means that the lockdown started before the exp-growth of infections started)
 dates=[]
 for land in  hy_df.iterrows():
     index_covid=indexof(c1,land[0])
@@ -131,15 +126,11 @@ df_cpy=hy_df.drop(["Lockdown Length"],axis=1)
 axes = df_cpy.plot(kind='bar')
 plt.show()
 
-###correlations
+###correlation
 x=hy_df["days_between_lockdown_first_exp_growth"].corr(hy_df["Lockdown Length"])
 
-print("Correlation between wait-time and time needed to flatten the curve:"+str(x))
 print("wait-time: (time between the start of exp-growth and start of lockdown)")
+print("Correlation between wait-time and time needed to flatten the curve:"+str(x))
 
 
-###read economical changes in the lockdown
-#economey_path="Stock market data/"
-#onlyfiles = [f for f in os.listdir(economey_path) if os.path.isfile(os.path.join(economey_path, f))]
-#austeria=pd.read_csv(economey_path+onlyfiles[0])
-#print(austeria)
+
