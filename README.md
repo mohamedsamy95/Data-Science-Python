@@ -16,6 +16,7 @@ A detailed report with charts is attached.
 ################################
 
 Running the Code:
+
 -LockdownAnalysis.py: this code generate useful plots and data which explain the diffrent kinds of Lockdown used in each country
 to run the code you should set value of the variable "path" to  the local path of the project on your computer.
 
@@ -23,7 +24,10 @@ to run the code you should set value of the variable "path" to  the local path o
 This project was implemented by:
 
 Mohamed Elsisi (mohamedsamy95)
+
 Gehad Gamal (gehadg)
+
 Ashraf Beshtawi (ashrafbeshtawi)
+
 Imam Ihsan (imamihsaan)
 
