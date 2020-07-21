@@ -20,10 +20,16 @@ Running the Code:
 -LockdownAnalysis.py: this code generate useful plots and data which explain the diffrent kinds of Lockdown used in each country.
 To run the code you should set value of the variable "path" to  the local path of the project on your computer.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 -FactorCalculation.py & FactorLastDay.py: responsible for reproducing all results in the "Factor results" directory.
+
+-DatesExtractor.py: Produces Extracted Dates data.
+
 All pathes used within these scripts are relative to the directory of the project. They should run without any path editing if the code was run within the same directory of the cloned repository.
 
 ################################
+
 This project was implemented by:
 
 Mohamed Elsisi (mohamedsamy95)
